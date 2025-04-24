@@ -18,7 +18,11 @@
 		<!-- Sidebar navigation -->
 		<div class="sidebar" aria-label="Sidebar Navigation">
 			<!-- Sidebar toggle button -->
-			<i class="bx bx-chevrons-left hide-btn" id="hideBtn" aria-label="Hide sidebar"></i>
+			<i
+				class="bx bx-chevrons-left hide-btn"
+				id="hideBtn"
+				aria-label="Hide sidebar"
+			></i>
 			<div class="logo-details">
 				<i class="bx bxs-shopping-bag icon"></i>
 				<div class="logo_name">ShopperCo</div>
@@ -30,7 +34,11 @@
 				<!-- Search bar -->
 				<li>
 					<i class="bx bx-search"></i>
-					<input type="text" placeholder="Search products..." aria-label="Search products" />
+					<input
+						type="text"
+						placeholder="Search products..."
+						aria-label="Search products"
+					/>
 					<span class="tooltip">Search</span>
 				</li>
 				<!-- Home link -->
@@ -127,48 +135,46 @@
 					<span class="tooltip">Settings</span>
 				</li>
 				<!-- User profile and logout -->
-                <li class="profile">
-                    <div class="profile-details">
-                      <img 
-                        src="{% if user.is_authenticated and user.socialaccount_set.first and user.socialaccount_set.first.get_avatar_url %}
+				<li class="profile">
+					<div class="profile-details">
+						<img
+							src="{% if user.is_authenticated and user.socialaccount_set.first and user.socialaccount_set.first.get_avatar_url %}
                                 {{ user.socialaccount_set.first.get_avatar_url }}
                              {% else %}
                                 https://www.gravatar.com/avatar/?d=mp
-                             {% endif %}" 
-                        alt="Avatar" width="32" height="32">
-                  
-                      <div class="name_job">
-                        <div class="name">
-                          {% if user.is_authenticated %}
-                            {{ user.get_full_name|default:user.username }}
-                          {% else %}
-                            Guest
-                          {% endif %}
-                        </div>
-                        <div class="job">
-                          {% if user.is_authenticated %}
-                            Premium Member
-                          {% else %}
-                            Visitor
-                          {% endif %}
-                        </div>
-                      </div>
-                    </div>
-                  
-                    <a href="{% url user.is_authenticated|yesno:'shop-logout,shop-login' %}" aria-label="{% if user.is_authenticated %}Logout{% else %}Login{% endif %}">
-                      <i class="bx {% if user.is_authenticated %}bx-log-out{% else %}bx-log-in{% endif %}" id="log_out"></i>
-                    </a>
-                  </li>
-                  
+                             {% endif %}"
+							alt="Avatar"
+							width="32"
+							height="32"
+						/>
 
-                
+						<div class="name_job">
+							<div class="name">
+								{% if user.is_authenticated %} {{
+								user.get_full_name|default:user.username }} {% else %} Guest {%
+								endif %}
+							</div>
+							<div class="job">
+								{% if user.is_authenticated %} Premium Member {% else %} Visitor
+								{% endif %}
+							</div>
+						</div>
+					</div>
+
+					<a
+						href="{% url user.is_authenticated|yesno:'shop-logout,shop-login' %}"
+						aria-label="{% if user.is_authenticated %}Logout{% else %}Login{% endif %}"
+					>
+						<i
+							class="bx {% if user.is_authenticated %}bx-log-out{% else %}bx-log-in{% endif %}"
+							id="log_out"
+						></i>
+					</a>
+				</li>
 			</ul>
 		</div>
 
-        <main>
-            {% block content %}{% endblock %}
-          </main>
-          
+		<main>{% block content %}{% endblock %}</main>
 
 		<!-- Main JavaScript -->
 		<script src="{% static 'js/main.js' %}"></script>
