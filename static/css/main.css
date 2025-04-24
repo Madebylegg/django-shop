@@ -93,8 +93,7 @@ body {
 	background: #11101d;
 	padding: 6px 14px;
 	z-index: 99;
-	transform: translateX(0);
-	transition: transform 0.4s ease, width 0.5s ease; /* <-- add this */
+	transition: transform 0.5s ease, width 0.5s ease; /* <-- add this */
 }
 
 /* 2) When .peeked is toggled, shift it left by 80px */
@@ -368,6 +367,8 @@ body {
 	color: #fff;
 	font-size: 15px;
 	font-weight: 400;
+  margin: 1rem;
+  max-width: 92%;
 	text-decoration: none;
 	transition: background 0.3s ease, color 0.3s ease;
 }
