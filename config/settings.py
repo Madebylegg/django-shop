@@ -82,6 +82,8 @@ TEMPLATES = [
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [ BASE_DIR / 'static' ]     # ← your dev-time static assets
 STATIC_ROOT = BASE_DIR / 'staticfiles'         # ← collectstatic target
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # (optional) media uploads
 MEDIA_URL = '/media/'
