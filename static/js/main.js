@@ -1,56 +1,40 @@
 document.addEventListener('DOMContentLoaded', () => {
   const sidebar   = document.querySelector('.sidebar');
-  const closeBtn  = document.querySelector('#btn');
+  const btn       = document.querySelector('#btn');
   const searchBtn = document.querySelector('.bx-search');
-  const peekBtn   = document.querySelector('#hideBtn'); // ← chevrons
+  const peekBtn   = document.querySelector('#hideBtn'); // your “chevrons” button
   const submenuToggles = document.querySelectorAll('.has-submenu > .submenu-toggle');
 
-  // Auto open if screen is wide enough
-  if (window.innerWidth >= 430) {
-    sidebar.classList.add('open');
-  }
-
-  // Optional: Add peeked default
+  // Initialize sidebar in peeked state
   sidebar.classList.add('peeked');
 
-  // toggle open/closed with menu icon
-  closeBtn?.addEventListener('click', () => {
+  // Helper to swap the menu icon
+  function updateMenuIcon() {
+    btn.classList.toggle('bx-menu', !sidebar.classList.contains('open'));
+    btn.classList.toggle('bx-menu-alt-right', sidebar.classList.contains('open'));
+  }
+
+  // Toggle open/closed & update icon
+  function toggleSidebar() {
     sidebar.classList.toggle('open');
     updateMenuIcon();
-  });
+  }
 
-  // toggle open/closed with search icon
-  searchBtn?.addEventListener('click', () => {
-    sidebar.classList.toggle('open');
-    updateMenuIcon();
-  });
-
-  // peek in/out by 80px
-  peekBtn?.addEventListener('click', () => {
+  // Event bindings
+  btn.addEventListener('click', toggleSidebar);
+  searchBtn.addEventListener('click', toggleSidebar);
+  peekBtn.addEventListener('click', () => {
     sidebar.classList.toggle('peeked');
   });
 
-  // toggle submenu visibility
+  // Submenu toggles
   submenuToggles.forEach(toggle => {
     toggle.addEventListener('click', e => {
       e.preventDefault();
       toggle.parentElement.classList.toggle('open-submenu');
     });
   });
-
-  function updateMenuIcon() {
-    if (sidebar.classList.contains('open')) {
-      closeBtn?.classList.replace('bx-menu', 'bx-menu-alt-right');
-    } else {
-      closeBtn?.classList.replace('bx-menu-alt-right', 'bx-menu');
-    }
-  }
 });
 
-  // JS to toggle the submenu open/closed
-  document.querySelectorAll('.has-submenu > .submenu-toggle').forEach(toggle => {
-    toggle.addEventListener('click', e => {
-      e.preventDefault();
-      toggle.parentElement.classList.toggle('open-submenu');
-    });
-  });
+
+  
