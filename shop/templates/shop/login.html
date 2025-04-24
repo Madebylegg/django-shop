@@ -29,9 +29,14 @@
   
     <h3>Or login with</h3>
     <div class="social-auth-wrapper">
-      <a href="{% provider_login_url 'google' %}"><i class='bx bxl-google auth-large-icon'></i>Login with Google</a><br>
-      <a href="{% provider_login_url 'facebook' %}"><i class='bx bxl-facebook auth-large-icon'></i>Login with Facebook</a>
+      <a href="{% provider_login_url 'google' %}">
+        <i class='bx bxl-google auth-large-icon'></i>Login with Google
+      </a>
+      <a href="{% provider_login_url 'facebook' %}">
+        <i class='bx bxl-facebook auth-large-icon'></i>Login with Facebook
+      </a>
     </div>
+    
     <p class="signup-prompt">
       Don’t have an account? 
       <a class="acc-line" href="{% url 'account_signup' %}">Sign up here</a>

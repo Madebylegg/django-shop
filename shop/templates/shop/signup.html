@@ -1,35 +1,52 @@
 {% extends "base.html" %}
 {% load account %}
+{% load socialaccount %}
 
 {% block content %}
-<div class="auth-container">
-  <h2>Create an Account</h2>
+<div class="auth-wrapper">
+  <div class="auth-container">
+    <h2>Create an Account</h2>
 
-  <form method="POST">
-    {% csrf_token %}
-    <label>{{ form.email.label }}</label>
-    {{ form.email }}
+    <form method="POST">
+      {% csrf_token %}
+      <label>{{ form.email.label }}</label>
+      {{ form.email }}
 
-    <label>{{ form.username.label }}</label>
-    {{ form.username }}
+      <label>{{ form.username.label }}</label>
+      {{ form.username }}
 
-    <label>{{ form.password1.label }}</label>
-    {{ form.password1 }}
+      <label>{{ form.password1.label }}</label>
+      {{ form.password1 }}
 
-    <label>{{ form.password2.label }}</label>
-    {{ form.password2 }}
+      <label>{{ form.password2.label }}</label>
+      {{ form.password2 }}
 
-    <label>{{ form.favourite.label }}</label>
-    {{ form.favourite }}
+      <label>{{ form.favourite.label }}</label>
+      {{ form.favourite }}
 
-    <button type="submit">Sign Up</button>
+      <button type="submit">Sign Up</button>
 
-    {% if form.errors %}
-      <div style="color: red;">{{ form.non_field_errors }}</div>
-    {% endif %}
-  </form>
+      {% if form.errors %}
+        <div class="form-error">{{ form.non_field_errors }}</div>
+      {% endif %}
+    </form>
 
-  <p>Already have an account?
-    <a class="acc-line" href="{% url 'shop-login' %}">Login here</a></p>
+    <hr>
+
+    <h3>Or sign up with</h3>
+    <div class="social-auth-wrapper">
+      <a href="{% provider_login_url 'google' %}">
+        <i class='bx bxl-google auth-large-icon'></i>Sign up with Google
+      </a>
+      <a href="{% provider_login_url 'facebook' %}">
+        <i class='bx bxl-facebook auth-large-icon'></i>Sign up with Facebook
+      </a>
+    </div>
+
+    <p class="signup-prompt">
+      Already have an account?
+      <a class="acc-line" href="{% url 'shop-login' %}">Login here</a>
+    </p>
+  </div>
 </div>
 {% endblock %}
