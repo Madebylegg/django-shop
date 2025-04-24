@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load socialaccount %}
+{% load account %}
+
+{% block content %}
+  <h2>Login to your account</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+  
+    <label>Email or Username</label>
+    {{ form.login }}
+  
+    <label>Password</label>
+    {{ form.password }}
+  
+    {% if form.errors %}
+      <div style="color: red;">
+        {{ form.non_field_errors }}
+      </div>
+    {% endif %}
+  
+    <button type="submit">Login</button>
+  </form>
+  
+
+  <hr>
+
+  <h3>Or login with</h3>
+  <a href="{% provider_login_url 'google' %}">Login with Google</a><br>
+  <a href="{% provider_login_url 'facebook' %}">Login with Facebook</a>
+{% endblock %}

@@ -127,23 +127,48 @@
 					<span class="tooltip">Settings</span>
 				</li>
 				<!-- User profile and logout -->
-				<li class="profile">
-					<div class="profile-details">
-						<img src="profile.jpg" alt="User profile image" />
-						<div class="name_job">
-							<div class="name">Prem Shahi</div>
-							<div class="job">Premium Member</div>
-						</div>
-					</div>
-					<i class="bx bx-log-out" id="log_out" aria-label="Logout"></i>
-				</li>
+                <li class="profile">
+                    <div class="profile-details">
+                      <img 
+                        src="{% if user.is_authenticated and user.socialaccount_set.first and user.socialaccount_set.first.get_avatar_url %}
+                                {{ user.socialaccount_set.first.get_avatar_url }}
+                             {% else %}
+                                https://www.gravatar.com/avatar/?d=mp
+                             {% endif %}" 
+                        alt="Avatar" width="32" height="32">
+                  
+                      <div class="name_job">
+                        <div class="name">
+                          {% if user.is_authenticated %}
+                            {{ user.get_full_name|default:user.username }}
+                          {% else %}
+                            Guest
+                          {% endif %}
+                        </div>
+                        <div class="job">
+                          {% if user.is_authenticated %}
+                            Premium Member
+                          {% else %}
+                            Visitor
+                          {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                  
+                    <a href="{% url user.is_authenticated|yesno:'shop-logout,shop-login' %}" aria-label="{% if user.is_authenticated %}Logout{% else %}Login{% endif %}">
+                      <i class="bx {% if user.is_authenticated %}bx-log-out{% else %}bx-log-in{% endif %}" id="log_out"></i>
+                    </a>
+                  </li>
+                  
+
+                
 			</ul>
 		</div>
 
-		<!-- Main content section -->
-		<section class="home-section">
-			<div class="text">Dashboard</div>
-		</section>
+        <main>
+            {% block content %}{% endblock %}
+          </main>
+          
 
 		<!-- Main JavaScript -->
 		<script src="{% static 'js/main.js' %}"></script>
