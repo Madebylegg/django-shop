@@ -147,19 +147,23 @@
 							width="32"
 							height="32"
 						/>
-
 						<div class="name_job">
 							<div class="name">
-								{% if user.is_authenticated %} {{
-								user.get_full_name|default:user.username }} {% else %} Guest {%
-								endif %}
+								{% if user.is_authenticated %}
+									{{ user.get_full_name|default:user.username }}
+								{% else %}
+									Guest
+								{% endif %}
 							</div>
 							<div class="job">
-								{% if user.is_authenticated %} Premium Member {% else %} Visitor
+								{% if user.is_authenticated %}
+									Premium Member
+								{% else %}
+									Visitor
 								{% endif %}
 							</div>
 						</div>
-					</div>
+						
 
 					<a
 						href="{% url user.is_authenticated|yesno:'shop-logout,shop-login' %}"

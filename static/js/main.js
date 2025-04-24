@@ -40,3 +40,20 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	});
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const sidebar = document.querySelector(".sidebar");
+  const hamburgerBtn = document.querySelector("#btn");
+  const submenuItems = document.querySelectorAll(".has-submenu");
+
+  hamburgerBtn.addEventListener("click", () => {
+    // If closing the sidebar...
+    if (sidebar.classList.contains("open")) {
+      // Close all submenus
+      submenuItems.forEach(item => item.classList.remove("open-submenu"));
+    }
+
+    // Toggle sidebar open/close
+    sidebar.classList.toggle("open");
+  });
+});
