@@ -3,29 +3,37 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>{% block title %}My Shop{% endblock %}</title>
 
+		<!-- Main CSS -->
 		<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+		<!-- Boxicons CSS -->
 		<link
 			href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
 			rel="stylesheet"
 		/>
 	</head>
 	<body>
-		<div class="sidebar">
-			<i class="bx bx-chevrons-left hide-btn" id="hideBtn"></i>
+		<!-- Sidebar navigation -->
+		<div class="sidebar" aria-label="Sidebar Navigation">
+			<!-- Sidebar toggle button -->
+			<i class="bx bx-chevrons-left hide-btn" id="hideBtn" aria-label="Hide sidebar"></i>
 			<div class="logo-details">
 				<i class="bx bxs-shopping-bag icon"></i>
 				<div class="logo_name">ShopperCo</div>
-				<i class="bx bx-menu" id="btn"></i>
+				<!-- Menu toggle button -->
+				<i class="bx bx-menu" id="btn" aria-label="Toggle sidebar menu"></i>
 			</div>
+			<!-- Navigation list -->
 			<ul class="nav-list">
+				<!-- Search bar -->
 				<li>
 					<i class="bx bx-search"></i>
-					<input type="text" placeholder="Search products..." />
+					<input type="text" placeholder="Search products..." aria-label="Search products" />
 					<span class="tooltip">Search</span>
 				</li>
+				<!-- Home link -->
 				<li>
 					<a href="/">
 						<i class="bx bx-home-alt"></i>
@@ -33,6 +41,7 @@
 					</a>
 					<span class="tooltip">Home</span>
 				</li>
+				<!-- Shop all products link -->
 				<li>
 					<a href="/products">
 						<i class="bx bx-store"></i>
@@ -40,6 +49,7 @@
 					</a>
 					<span class="tooltip">Shop All</span>
 				</li>
+				<!-- Categories with submenu -->
 				<li class="has-submenu">
 					<a href="#" class="submenu-toggle">
 						<i class="bx bx-category"></i>
@@ -59,24 +69,7 @@
 								<span class="links_name">Electronics</span>
 							</a>
 						</li>
-						<li>
-							<a href="/categories/electronics">
-								<i class="bx bxs-tv"></i>
-								<span class="links_name">Electronics</span>
-							</a>
-						</li>
-						<li>
-							<a href="/categories/electronics">
-								<i class="bx bxs-tv"></i>
-								<span class="links_name">Electronics</span>
-							</a>
-						</li>
-						<li>
-							<a href="/categories/electronics">
-								<i class="bx bxs-tv"></i>
-								<span class="links_name">Electronics</span>
-							</a>
-						</li>
+						<!-- Additional categories -->
 						<li>
 							<a href="/categories/electronics">
 								<i class="bx bxs-tv"></i>
@@ -85,6 +78,7 @@
 						</li>
 					</ul>
 				</li>
+				<!-- New Arrivals -->
 				<li>
 					<a href="/new-arrivals">
 						<i class="bx bx-star"></i>
@@ -92,6 +86,7 @@
 					</a>
 					<span class="tooltip">New Arrivals</span>
 				</li>
+				<!-- Best Sellers -->
 				<li>
 					<a href="/best-sellers">
 						<i class="bx bx-trending-up"></i>
@@ -99,6 +94,7 @@
 					</a>
 					<span class="tooltip">Best Sellers</span>
 				</li>
+				<!-- Sale section -->
 				<li>
 					<a href="/sale">
 						<i class="bx bxs-discount"></i>
@@ -106,7 +102,7 @@
 					</a>
 					<span class="tooltip">Sale</span>
 				</li>
-
+				<!-- Shopping cart -->
 				<li>
 					<a href="/cart">
 						<i class="bx bx-cart"></i>
@@ -114,6 +110,7 @@
 					</a>
 					<span class="tooltip">Cart</span>
 				</li>
+				<!-- Wishlist -->
 				<li>
 					<a href="/wishlist">
 						<i class="bx bx-heart"></i>
@@ -121,6 +118,7 @@
 					</a>
 					<span class="tooltip">Wishlist</span>
 				</li>
+				<!-- Settings -->
 				<li>
 					<a href="/settings">
 						<i class="bx bx-cog"></i>
@@ -128,23 +126,26 @@
 					</a>
 					<span class="tooltip">Settings</span>
 				</li>
+				<!-- User profile and logout -->
 				<li class="profile">
 					<div class="profile-details">
-						<img src="profile.jpg" alt="profileImg" />
+						<img src="profile.jpg" alt="User profile image" />
 						<div class="name_job">
 							<div class="name">Prem Shahi</div>
 							<div class="job">Premium Member</div>
 						</div>
 					</div>
-					<i class="bx bx-log-out" id="log_out"></i>
+					<i class="bx bx-log-out" id="log_out" aria-label="Logout"></i>
 				</li>
 			</ul>
 		</div>
 
+		<!-- Main content section -->
 		<section class="home-section">
 			<div class="text">Dashboard</div>
 		</section>
 
+		<!-- Main JavaScript -->
 		<script src="{% static 'js/main.js' %}"></script>
 	</body>
 </html>
