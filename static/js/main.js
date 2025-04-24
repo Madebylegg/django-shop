@@ -2,58 +2,46 @@ document.addEventListener("DOMContentLoaded", () => {
 	const sidebar = document.querySelector(".sidebar");
 	const btn = document.querySelector("#btn");
 	const searchBtn = document.querySelector(".bx-search");
-	const peekBtn = document.querySelector("#hideBtn"); // your “chevrons” button
-	const submenuToggles = document.querySelectorAll(
-		".has-submenu > .submenu-toggle"
-	);
-
-	// Initialize sidebar in peeked state
+	const peekBtn = document.querySelector("#hideBtn");
+	const submenuToggles = document.querySelectorAll(".has-submenu > .submenu-toggle");
+	const submenuItems = document.querySelectorAll(".has-submenu");
+  
+	// Start in peeked mode
 	sidebar.classList.add("peeked");
-
-	// Helper to swap the menu icon
+  
+	// Helper: update hamburger icon
 	function updateMenuIcon() {
-		btn.classList.toggle("bx-menu", !sidebar.classList.contains("open"));
-		btn.classList.toggle(
-			"bx-menu-alt-right",
-			sidebar.classList.contains("open")
-		);
+	  btn.classList.toggle("bx-menu", !sidebar.classList.contains("open"));
+	  btn.classList.toggle("bx-menu-alt-right", sidebar.classList.contains("open"));
 	}
-
-	// Toggle open/closed & update icon
+  
+	// Handle sidebar toggle with submenu reset
 	function toggleSidebar() {
-		sidebar.classList.toggle("open");
-		updateMenuIcon();
+	  const isOpen = sidebar.classList.contains("open");
+  
+	  sidebar.classList.toggle("open");
+	  updateMenuIcon();
+  
+	  // If sidebar is closing, remove open-submenu from all
+	  if (isOpen) {
+		submenuItems.forEach(item => item.classList.remove("open-submenu"));
+	  }
 	}
-
-	// Event bindings
+  
+	// Toggle sidebar from hamburger or search
 	btn.addEventListener("click", toggleSidebar);
 	searchBtn.addEventListener("click", toggleSidebar);
+  
+	// Toggle peek mode
 	peekBtn.addEventListener("click", () => {
-		sidebar.classList.toggle("peeked");
+	  sidebar.classList.toggle("peeked");
 	});
-
+  
 	// Submenu toggles
 	submenuToggles.forEach((toggle) => {
-		toggle.addEventListener("click", (e) => {
-			e.preventDefault();
-			toggle.parentElement.classList.toggle("open-submenu");
-		});
+	  toggle.addEventListener("click", (e) => {
+		e.preventDefault();
+		toggle.parentElement.classList.toggle("open-submenu");
+	  });
 	});
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const sidebar = document.querySelector(".sidebar");
-  const hamburgerBtn = document.querySelector("#btn");
-  const submenuItems = document.querySelectorAll(".has-submenu");
-
-  hamburgerBtn.addEventListener("click", () => {
-    // If closing the sidebar...
-    if (sidebar.classList.contains("open")) {
-      // Close all submenus
-      submenuItems.forEach(item => item.classList.remove("open-submenu"));
-    }
-
-    // Toggle sidebar open/close
-    sidebar.classList.toggle("open");
   });
-});

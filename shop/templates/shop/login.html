@@ -3,30 +3,39 @@
 {% load account %}
 
 {% block content %}
-  <h2>Login to your account</h2>
-
-  <form method="POST">
-    {% csrf_token %}
+<div class="auth-wrapper">
+  <div class="auth-container">
+    <h2>Login to your account</h2>
   
-    <label>Email or Username</label>
-    {{ form.login }}
+    <form method="POST">
+      {% csrf_token %}
   
-    <label>Password</label>
-    {{ form.password }}
+      <label>Email or Username</label>
+      {{ form.login }}
   
-    {% if form.errors %}
-      <div style="color: red;">
-        {{ form.non_field_errors }}
-      </div>
-    {% endif %}
+      <label>Password</label>
+      {{ form.password }}
   
-    <button type="submit">Login</button>
-  </form>
+      {% if form.errors %}
+        <div class="form-error">
+          {{ form.non_field_errors }}
+        </div>
+      {% endif %}
   
-
-  <hr>
-
-  <h3>Or login with</h3>
-  <a href="{% provider_login_url 'google' %}">Login with Google</a><br>
-  <a href="{% provider_login_url 'facebook' %}">Login with Facebook</a>
+      <button type="submit">Login</button>
+    </form>
+  
+    <hr>
+  
+    <h3>Or login with</h3>
+    <div class="social-auth-wrapper">
+      <a href="{% provider_login_url 'google' %}"><i class='bx bxl-google auth-large-icon'></i>Login with Google</a><br>
+      <a href="{% provider_login_url 'facebook' %}"><i class='bx bxl-facebook auth-large-icon'></i>Login with Facebook</a>
+    </div>
+    <p class="signup-prompt">
+      Don’t have an account? 
+      <a class="acc-line" href="{% url 'account_signup' %}">Sign up here</a>
+    </p>
+  </div>
+</div>
 {% endblock %}
