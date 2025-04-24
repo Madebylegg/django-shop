@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-d22tmij=75e!gp6sb5v!a2xgkbb()t3m&r#8#+j@rfd_kbz3e(
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['your-service-name.onrender.com']  # Use actual Render URL
+ALLOWED_HOSTS = ['django-shop-nls2.onrender.com']  # Use actual Render URL
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
