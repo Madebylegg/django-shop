@@ -1,0 +1,196 @@
+
+.signup-prompt {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: var(--font-size-4);
+  }
+  
+  .signup-prompt a {
+    color: var(--color-white);
+    text-decoration: underline;
+    transition: var(--transition-default);
+  }
+  
+  .signup-prompt a:hover {
+    color: var(--color-hover-bg);
+  }
+  
+  .form-error {
+    color: red;
+    font-size: var(--font-size-4);
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+
+.acc-line{
+    display: block;
+    margin-block: 0.1rem;
+}
+/* --------------------------
+   AUTH FORMS (Login & Signup)
+--------------------------- */
+.auth-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem 1rem; /* mobile-safe horizontal padding */
+    overflow-y: auto;
+  }
+  
+.auth-large-icon{
+    width: var(--icon-size);
+    height: var(--icon-size);
+    margin: 0 auto;
+    display: block;
+    font-size: var(--font-size-3);
+}
+
+.social-auth-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.auth-container .social-auth-wrapper a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--color-white);
+  color: var(--color-primary-bg);
+  font-weight: 600;
+  font-size: var(--font-size-4);
+  text-decoration: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-large);
+  width: 100%;
+  max-width: 280px;
+  transition: var(--transition-default);
+  box-shadow: var(--shadow-small);
+}
+
+.social-auth-wrapper a:hover {
+  background: var(--color-hover-bg);
+  color: var(--color-primary-bg);
+}
+
+.auth-large-icon {
+    font-size: 20px;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+
+  .auth-large-icon {
+    font-size: 20px;
+    margin-right: 8px;
+  }
+  
+.auth-container {
+    max-width: 380px;
+    width: 100%;
+    margin: 0 auto;
+    background: var(--color-primary-bg);
+    padding: var(--padding-default);
+    border-radius: var(--radius-large);
+    box-shadow: var(--shadow-medium);
+    color: var(--color-white);
+    position: relative;     /* Required to isolate z-index context */
+    z-index: 1;          /* Ensure it is above other elements */
+    overflow: visible;      /* <-- This is the likely fix */
+  }
+
+  .sidebar:not(.open) .chevron {
+    display: none;
+  }
+  
+  
+  .auth-container h2,
+  .auth-container h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--color-white);
+  }
+  
+  .auth-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  /* Only target form elements inside .auth-container */
+  .auth-container form label {
+    font-weight: 500;
+    font-size: var(--font-size-4);
+    margin-bottom: 0.25rem;
+  }
+  
+  .auth-container form input[type="text"],
+  .auth-container form input[type="email"],
+  .auth-container form input[type="password"],
+  .auth-container form select {
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-large);
+    border: none;
+    background: var(--color-secondary-bg);
+    color: var(--color-white);
+    font-size: var(--font-size-4);
+  }
+  
+  .auth-container form input:focus {
+    outline: none;
+    background: #2a2a2a;
+  }
+  
+  .auth-container form button {
+    padding: 0.75rem 1rem;
+    background: var(--color-white);
+    color: var(--color-primary-bg);
+    border: none;
+    font-size: var(--font-size-4);
+    font-weight: 600;
+    border-radius: var(--radius-large);
+    cursor: pointer;
+    transition: var(--transition-default);
+  }
+  
+  .auth-container form button:hover {
+    background: var(--color-hover-bg);
+    color: var(--color-primary-bg);
+  }
+  
+  .auth-container a {
+    color: var(--color-white);
+    text-decoration: underline;
+    transition: var(--transition-default);
+  }
+  
+  .auth-container a:hover {
+    color: var(--color-hover-bg);
+  }
+  
+  .auth-container hr {
+    margin: 2rem 0;
+    border: none;
+    border-top: 1px solid var(--color-hover-bg);
+  }
+  
+
+  /* Mobile responsiveness */
+@media (max-width: 480px) {
+    .auth-container {
+      padding: 1rem;
+    }
+  
+    .auth-wrapper {
+      align-items: flex-start;
+      padding-top: 2rem;
+    }
+  }

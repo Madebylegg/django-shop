@@ -1,43 +1,47 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const sidebar   = document.querySelector('.sidebar');
-    const closeBtn  = document.querySelector('#btn');
-    const searchBtn = document.querySelector('.bx-search');
-    const peekBtn   = document.querySelector('#hideBtn'); // ← your “chevrons” button
+document.addEventListener("DOMContentLoaded", () => {
+	const sidebar = document.querySelector(".sidebar");
+	const btn = document.querySelector("#btn");
+	const searchBtn = document.querySelector(".bx-search");
+	const peekBtn = document.querySelector("#hideBtn");
+	const submenuToggles = document.querySelectorAll(".has-submenu > .submenu-toggle");
+	const submenuItems = document.querySelectorAll(".has-submenu");
   
-    // toggle open/closed
-    closeBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('open');
-      updateMenuIcon();
-    });
+	// Start in peeked mode
+	sidebar.classList.add("peeked");
   
-    // same for search icon
-    searchBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('open');
-      updateMenuIcon();
-    });
+	// Helper: update hamburger icon
+	function updateMenuIcon() {
+	  btn.classList.toggle("bx-menu", !sidebar.classList.contains("open"));
+	  btn.classList.toggle("bx-menu-alt-right", sidebar.classList.contains("open"));
+	}
   
-    // peek in/out by 80px
-    peekBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('peeked');
-    });
+	// Handle sidebar toggle with submenu reset
+	function toggleSidebar() {
+	  const isOpen = sidebar.classList.contains("open");
   
-    function updateMenuIcon() {
-      if (sidebar.classList.contains('open')) {
-        closeBtn.classList.replace('bx-menu', 'bx-menu-alt-right');
-      } else {
-        closeBtn.classList.replace('bx-menu-alt-right', 'bx-menu');
-      }
-    }
+	  sidebar.classList.toggle("open");
+	  updateMenuIcon();
+  
+	  // If sidebar is closing, remove open-submenu from all
+	  if (isOpen) {
+		submenuItems.forEach(item => item.classList.remove("open-submenu"));
+	  }
+	}
+  
+	// Toggle sidebar from hamburger or search
+	btn.addEventListener("click", toggleSidebar);
+	searchBtn.addEventListener("click", toggleSidebar);
+  
+	// Toggle peek mode
+	peekBtn.addEventListener("click", () => {
+	  sidebar.classList.toggle("peeked");
+	});
+  
+	// Submenu toggles
+	submenuToggles.forEach((toggle) => {
+	  toggle.addEventListener("click", (e) => {
+		e.preventDefault();
+		toggle.parentElement.classList.toggle("open-submenu");
+	  });
+	});
   });
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelector('.sidebar').classList.add('peeked');
-  });
-  
-  // JS to toggle the submenu open/closed
-  document.querySelectorAll('.has-submenu > .submenu-toggle').forEach(toggle => {
-    toggle.addEventListener('click', e => {
-      e.preventDefault();
-      toggle.parentElement.classList.toggle('open-submenu');
-    });
-  });
-  

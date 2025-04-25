@@ -96,8 +96,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, images)
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]  # Development static assets
-STATIC_ROOT = BASE_DIR / "staticfiles"  # Production static files
+STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Media files settings (optional uploads)
