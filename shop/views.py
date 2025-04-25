@@ -42,3 +42,15 @@ def signup_view(request):
 def logout_view(request):
     logout(request)
     return redirect('shop-login')  # or use LOGOUT_REDIRECT_URL
+
+
+
+
+
+
+def privacy_view(request):
+    return render(request, "shop/privacy.html")
+
+
+def terms_view(request):
+    return render(request, "shop/terms.html")
