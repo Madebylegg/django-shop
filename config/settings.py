@@ -1,4 +1,5 @@
 from pathlib import Path
+import dj_database_url
 import os
 
 # Base directory of the Django project
@@ -70,13 +71,20 @@ TEMPLATES = [
 # WSGI application definition
 WSGI_APPLICATION = "config.wsgi.application"
 
-# Database settings (SQLite for development)
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+# Database settings (SQLite for development & render for production)
+if os.environ.get("RENDER"):
+    # On Render → use Postgres from DATABASE_URL
+    DATABASES = {
+        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
     }
-}
+else:
+    # Local dev → use SQLite
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # Password validators
 AUTH_PASSWORD_VALIDATORS = [
@@ -125,3 +133,8 @@ LOGOUT_REDIRECT_URL = '/login/'
 # 👇 Makes Django's @login_required use your route
 LOGIN_URL = '/login/'
 
+SOCIALACCOUNT_AUTO_SIGNUP = True
+SOCIALACCOUNT_LOGIN_ON_GET = True
+SOCIALACCOUNT_QUERY_EMAIL = True
+SOCIALACCOUNT_EMAIL_VERIFICATION = "optional"
+SOCIALACCOUNT_EMAIL_REQUIRED = True
