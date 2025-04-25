@@ -141,14 +141,20 @@ SOCIALACCOUNT_EMAIL_REQUIRED = True
 
 
 
-# --- TEMP: Create superuser on first startup in production ---
-if os.environ.get("RENDER") and os.environ.get("DJANGO_SUPERUSER_EMAIL"):
+def create_render_superuser():
+    import django
+    django.setup()
+
     from django.contrib.auth import get_user_model
     User = get_user_model()
+
     if not User.objects.filter(email=os.environ["DJANGO_SUPERUSER_EMAIL"]).exists():
         User.objects.create_superuser(
             username=os.environ["DJANGO_SUPERUSER_USERNAME"],
             email=os.environ["DJANGO_SUPERUSER_EMAIL"],
             password=os.environ["DJANGO_SUPERUSER_PASSWORD"]
         )
-# --- END TEMP ---
+
+if os.environ.get("RENDER") and os.environ.get("DJANGO_SUPERUSER_EMAIL"):
+    import threading
+    threading.Thread(target=create_render_superuser).start()
